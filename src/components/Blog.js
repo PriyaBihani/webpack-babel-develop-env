@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { getAllArticles } from "../actions/article";
 import { NavLink } from 'react-router-dom'
@@ -9,14 +9,18 @@ import All from '../sections/blog/All'
 
 
 
-const Blog = ({ getAllArticles, articles, isAdmin }) => {
+const Blog = ({ getAllArticles, serverArticles, storeArticles, isAdmin }) => {
+
+    const [articles, setArticles] = useState(serverArticles)
+
+
     useEffect(() => {
-        if (articles.length === 0) {
+        if (serverArticles.length === 0) {
             getAllArticles()
+            setArticles(storeArticles)
         }
     }, [articles, getAllArticles])
 
-    console.log(articles)
     return (
         <div className="blog-container">
 
@@ -52,7 +56,7 @@ const Blog = ({ getAllArticles, articles, isAdmin }) => {
 }
 
 const mapStateToProps = (state) => ({
-    articles: state.article.articles,
+    storeArticles: state.article.articles,
     isAdmin: state.auth.isAdmin,
 
 });

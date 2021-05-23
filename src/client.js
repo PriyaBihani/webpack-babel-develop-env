@@ -15,7 +15,7 @@ ReactDOM.hydrate(
 	<React.StrictMode>
 		<Provider store={store}>
 			<BrowserRouter>
-				<App />
+				<App articles={window._INITIAL_DATA_} />
 			</BrowserRouter>
 		</Provider>
 	</React.StrictMode>,

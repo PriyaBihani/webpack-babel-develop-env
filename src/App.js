@@ -20,30 +20,16 @@ import UpsertTopic from './components/UpsertTopic';
 import UpsertVideo from './components/UpsertVideo';
 import Blog from './components/Blog';
 // import PrivateRoute from './helpers/PrivateRoute';
-
-const Preview = Loadable({
-	loader: () => import('./components/Preview'),
-	loading: () => <Loader />,
-});
-
-const Home = Loadable({
-	loader: () => import('./components/Home'),
-	loading: () => <Loader />,
-});
-const About = Loadable({
-	loader: () => import('./components/About'),
-	loading: () => <Loader />,
-});
-const Learn = Loadable({
-	loader: () => import('./components/Learn'),
-	loading: () => <Loader />,
-});
+import Learn from './components/Learn'
+import About from './components/About'
+import Home from './components/Home'
+import Preview from './components/Preview'
 
 if (isClient && localStorage.token) {
 	setAuthToken(localStorage.token);
 }
 
-const App = () => {
+const App = ({ articles }) => {
 	useEffect(() => {
 		store.dispatch(loadUser());
 	}, []);
@@ -114,7 +100,11 @@ const App = () => {
 						exact
 						path='/updatespeciality/:specialityName'
 					/>
-					<Route exact path='/blog' component={Blog} />
+					<Route
+						render={(props) => <Blog serverArticles={articles} {...props} />}
+						exact
+						path='/blog'
+					/>
 				</Switch>
 			</AnimatePresence>
 			<ToastContainer />
