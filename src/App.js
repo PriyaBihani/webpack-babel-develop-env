@@ -5,7 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import Loadable from 'react-loadable';
 
 import { loadUser } from './actions/auth';
-import { setAuthToken } from './helpers/setAuthToken';
+import { setAuthToken, isClient } from './helpers/setAuthToken';
 
 import 'bootstrap/dist/js/bootstrap.js';
 
@@ -39,7 +39,7 @@ const Learn = Loadable({
 	loading: () => <Loader />,
 });
 
-if (localStorage.token) {
+if (isClient && localStorage.token) {
 	setAuthToken(localStorage.token);
 }
 
