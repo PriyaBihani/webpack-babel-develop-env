@@ -7,8 +7,6 @@ import Loadable from 'react-loadable';
 import { loadUser } from './actions/auth';
 import { setAuthToken, isClient } from './helpers/setAuthToken';
 
-import 'bootstrap/dist/js/bootstrap.js';
-
 import store from './store';
 import { Preloader as Loader } from './layout/preloader';
 import Navbar from './layout/Navbar/Navbar';
@@ -20,10 +18,10 @@ import UpsertTopic from './components/UpsertTopic';
 import UpsertVideo from './components/UpsertVideo';
 import Blog from './components/Blog';
 // import PrivateRoute from './helpers/PrivateRoute';
-import Learn from './components/Learn'
-import About from './components/About'
-import Home from './components/Home'
-import Preview from './components/Preview'
+import Learn from './components/Learn';
+import About from './components/About';
+import Home from './components/Home';
+import Preview from './components/Preview';
 
 if (isClient && localStorage.token) {
 	setAuthToken(localStorage.token);
@@ -33,7 +31,7 @@ const App = ({ articles }) => {
 	useEffect(() => {
 		store.dispatch(loadUser());
 	}, []);
-
+	console.log('app, checking working');
 	return (
 		<div className='App'>
 			<Navbar />

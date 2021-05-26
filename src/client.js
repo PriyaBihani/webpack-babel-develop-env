@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
+import 'bootstrap/dist/js/bootstrap.js';
+
 import App from './App';
 import store from './store';
 import reportWebVitals from './reportWebVitals';

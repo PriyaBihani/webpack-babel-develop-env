@@ -1,6 +1,5 @@
 import express from 'express';
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
@@ -8,6 +7,7 @@ import { Provider } from 'react-redux';
 import fs from 'fs';
 import App from './src/App';
 import store from './src/store';
+import reload from 'reload';
 import axios from 'axios';
 import serialize from 'serialize-javascript';
 
@@ -20,27 +20,28 @@ var index = fs.readFileSync('build/index.html').toString();
 // const parts = html.split('<!-- not rendered -->');
 
 const app = express();
+const dev = process.env.NODE_ENV === 'development';
 
 const fetchArticles = async () => {
 	try {
-		console.log('fetch articles running')
-		const res = await axios.get('http://localhost:3001/api/article/all')
-		const articles = res.data.data.articles
-		return articles
+		console.log('fetch articles running');
+		const res = await axios.get('http://localhost:3001/api/article/all');
+		const articles = res.data.data.articles;
+		return articles;
 	} catch (error) {
-		console.log(error.message)
+		console.log(error.message);
 	}
-}
+};
 
 app.use(express.static('build'));
+
+if (dev) reload(app);
+
 app.use(async (req, res) => {
-
-
-
-	var finalHtml
-	var articles
-	if (req.url === "/blog") {
-		articles = await fetchArticles()
+	var finalHtml;
+	var articles;
+	if (req.url === '/blog') {
+		articles = await fetchArticles();
 	}
 	const reactMarkup = (
 		<React.StrictMode>
@@ -51,26 +52,16 @@ app.use(async (req, res) => {
 			</Provider>
 		</React.StrictMode>
 	);
-	const html = ReactDOMServer.renderToString(reactMarkup);
-
+	const html = renderToString(reactMarkup);
 
 	finalHtml = index
 		.replace('<div id="root"></div>', `<div id="root">${html}</div>`)
-		.replace(
-			'//script',
-			`window._INITIAL_DATA_ = ${serialize(articles)}`
-		);
+		.replace('//script', `window._INITIAL_DATA_ = ${serialize(articles)}`);
 
-	// 		.replace(
-	// 			'//script',
-	// 			`window._INITIAL_DATA_ = 
-	// ${serialize(articlesArray)}`
-	// );
+	// console.log(finalHtml);
+	// console.log('working');
 	res.send(finalHtml);
 	res.end();
 });
 
-
-
-console.log(`listening on ${PORT}`);
-app.listen(PORT);
+app.listen(PORT, () => console.log(`listening on ${PORT}`));
