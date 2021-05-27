@@ -16,7 +16,7 @@ if (isClient && localStorage.token) {
 
 const App = () => {
 	useEffect(() => {
-		store.dispatch(loadUser());
+		// store.dispatch(loadUser());
 	}, []);
 	console.log('app, checking working');
 	return (

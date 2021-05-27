@@ -46,8 +46,7 @@ const Navbar = ({ auth, ui, setDisplayMode }) => {
 	return (
 		<div className='navigation-wrap bg-light start-header start-style'>
 			<div className='container'>
-				<Accordion
-					className={isClient && window.innerWidth >= 767 ? null : 'dropdown-accordion'}>
+				<Accordion>
 					<Row>
 						<Col>
 							<nav className='navbar navbar-expand-md navbar-light'>

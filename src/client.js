@@ -3,8 +3,9 @@ import 'regenerator-runtime/runtime';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import thunk from 'react-redux';
+import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -14,13 +15,16 @@ import rootReducer from './reducers';
 import './index.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
+const middleware = [thunk];
+
+
 const store = createStore(
 	rootReducer,
 	window._INITIAL_DATA_,
-	applyMiddleware(thunk)
+	composeWithDevTools(applyMiddleware(...middleware))
 );
 
-console.log('working prehydeate');
+console.log('working prehydreate');
 
 ReactDOM.hydrate(
 	<React.StrictMode>
@@ -32,3 +36,29 @@ ReactDOM.hydrate(
 	</React.StrictMode>,
 	document.getElementById('root')
 );
+
+// // import 'core-js/stable';
+// // import 'regenerator-runtime/runtime';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import { Provider } from 'react-redux';
+// import { BrowserRouter } from 'react-router-dom';
+
+// import './index.css';
+// import App from './App';
+// import store from './store';
+// import reportWebVitals from './reportWebVitals';
+
+// ReactDOM.render(
+// 	<React.StrictMode>
+// 		<Provider store={store}>
+// 			<BrowserRouter>
+// 				<App />
+// 			</BrowserRouter>
+// 		</Provider>
+// 	</React.StrictMode>,
+// 	document.getElementById('root')
+// );
+
+
+// reportWebVitals();
