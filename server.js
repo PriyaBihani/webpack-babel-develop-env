@@ -24,7 +24,7 @@ app.use(express.static('build'));
 
 if (dev) reload(app);
 
-app.use(async (req, res) => {
+app.use((req, res) => {
 	const store = createStore();
 	const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
 
