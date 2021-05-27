@@ -7,7 +7,7 @@ import { loadUser } from './actions/auth';
 import { setAuthToken, isClient } from './helpers/setAuthToken';
 
 import store from './store';
-import Routes from './Routes';
+import routes from './Routes';
 import Navbar from './layout/Navbar/Navbar';
 
 if (isClient && localStorage.token) {
@@ -27,19 +27,15 @@ const App = () => {
 					<Route exact path='/'>
 						<Redirect to='/home' />
 					</Route>
-					{Routes.map(({ path, exact, component, render }) => {
-						<>
-							{/* {console.log({
-								...(C ? { component: { C } } : { render: { render } }),
-							})} */}
-							<Route
-								key={path}
-								path={path}
-								exact={exact}
-								component={component}
-							/>
-						</>;
-					})}
+					{routes.map(({ path, component, render }) => (
+						<Route
+							key={path}
+							path={path}
+							exact
+							component={component}
+							render={render}
+						/>
+					))}
 				</Switch>
 			</AnimatePresence>
 			<ToastContainer />
@@ -48,5 +44,3 @@ const App = () => {
 };
 
 export default App;
-
-/* {...(C ? { component: { C } } : { render: { render } })} */

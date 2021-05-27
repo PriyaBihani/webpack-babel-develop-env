@@ -18,7 +18,7 @@ import 'bootstrap/dist/js/bootstrap.js';
 
 console.log('working prehydreate');
 
-ReactDOM.hydrate(
+ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<BrowserRouter>
