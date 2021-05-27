@@ -7,7 +7,8 @@
 		"build": "rm -rf dist build && webpack --mode production --progress",
 		"dev": "rm -rf dist build && webpack --mode development --progress",
 		"watch": "concurrently \"webpack --mode development --watch \"  \"nodemon dist/main\"",
-		"start": "node dist/main.js"
+		"start": "node dist/main.js",
+		"start:webp": "webpack serve --open"
 	},
 	"author": "Priya Bihani",
 	"license": "ISC",

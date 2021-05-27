@@ -14,7 +14,7 @@ if (isClient && localStorage.token) {
 	setAuthToken(localStorage.token);
 }
 
-const App = ({ route }) => {
+const App = () => {
 	useEffect(() => {
 		store.dispatch(loadUser());
 	}, []);
@@ -27,13 +27,16 @@ const App = ({ route }) => {
 					<Route exact path='/'>
 						<Redirect to='/home' />
 					</Route>
-					{Routes.map(({ path, exact, component: C, render }) => {
+					{Routes.map(({ path, exact, component, render }) => {
 						<>
+							{/* {console.log({
+								...(C ? { component: { C } } : { render: { render } }),
+							})} */}
 							<Route
 								key={path}
 								path={path}
 								exact={exact}
-								{...(C ? { component: { C } } : { render: { render } })}
+								component={component}
 							/>
 						</>;
 					})}
@@ -45,3 +48,5 @@ const App = ({ route }) => {
 };
 
 export default App;
+
+/* {...(C ? { component: { C } } : { render: { render } })} */

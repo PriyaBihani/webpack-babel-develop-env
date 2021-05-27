@@ -53,10 +53,10 @@ module.exports = [
 			}),
 		],
 	},
-	{
-		...common,
-		entry: './server.js',
-		target: 'node',
-		externals: [nodeExternals()],
-	},
+	// {
+	// 	...common,
+	// 	entry: './server.js',
+	// 	target: 'node',
+	// 	externals: [nodeExternals()],
+	// },
 ];
