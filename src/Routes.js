@@ -10,7 +10,6 @@ import UpsertCard from './components/UpsertCard';
 import UpsertTopic from './components/UpsertTopic';
 import UpsertArticle from './components/UpsertArticle';
 import UpsertVideo from './components/UpsertVideo';
-import { Redirect } from 'react-router';
 // import PrivateRoute from './helpers/PrivateRoute';
 
 const routes = [
@@ -36,7 +35,7 @@ const routes = [
 	},
 	{
 		path: '/blog',
-		component: Blog,
+		...Blog,
 	},
 	{
 		path: '/signup',

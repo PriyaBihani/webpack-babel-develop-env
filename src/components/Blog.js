@@ -8,9 +8,6 @@ import Latest from '../sections/blog/Latest';
 import All from '../sections/blog/All';
 
 const Blog = ({ getAllArticles, articles, isAdmin }) => {
-	this.loadData = (store) => {
-		return store.dispatch(getAllArticles());
-	};
 	useEffect(() => {
 		if (articles.length === 0) {
 			getAllArticles();
@@ -57,4 +54,11 @@ const mapStateToProps = (state) => ({
 	isAdmin: state.auth.isAdmin,
 });
 
-export default connect(mapStateToProps, { getAllArticles })(Blog);
+const loadData = (store) => {
+	return store.dispatch(getAllArticles());
+};
+
+export default {
+	component: connect(mapStateToProps, { getAllArticles })(Blog),
+	loadData,
+};
