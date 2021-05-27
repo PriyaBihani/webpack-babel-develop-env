@@ -16,7 +16,7 @@ import 'bootstrap/dist/js/bootstrap.js';
 
 // const store = createStore(rootReducer, window._INITIAL_DATA_, thunk);
 
-console.log('working prehydreate');
+console.log('working prehydeate');
 
 ReactDOM.render(
 	<React.StrictMode>
