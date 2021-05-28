@@ -6,7 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 import { loadUser } from './actions/auth';
 import { setAuthToken, isClient } from './helpers/setAuthToken';
 
-import store from './store';
+import { store } from './client';
 import routes from './Routes';
 import Navbar from './layout/Navbar/Navbar';
 
