@@ -47,14 +47,17 @@ const Navbar = ({ auth, ui, setDisplayMode }) => {
 		<div className='navigation-wrap bg-light start-header start-style'>
 			<div className='container'>
 				<Accordion
-					className={isClient && window.innerWidth >= 767 ? null : 'dropdown-accordion'}>
+					className={isClient && window.innerWidth >= 767 ? null : ' '}>
 					<Row>
 						<Col>
 							<nav className='navbar navbar-expand-md navbar-light'>
 								<Link to='/'>
 									<img
 										style={{
-											fontSize: isClient && window.innerHeight >= 767 ? '2rem' : '1.2rem',
+											fontSize:
+												isClient && window.innerHeight >= 767
+													? '2rem'
+													: '1.2rem',
 										}}
 										className='nav-logo'
 										src={Logo}
@@ -67,8 +70,9 @@ const Navbar = ({ auth, ui, setDisplayMode }) => {
 										setDisplayMode();
 										setswitched(!switched);
 									}}
-									className={`switch float-right ${switched ? 'switched' : ''
-										}`}>
+									className={`switch float-right ${
+										switched ? 'switched' : ''
+									}`}>
 									<div
 										style={{
 											backgroundColor:
@@ -92,7 +96,7 @@ const Navbar = ({ auth, ui, setDisplayMode }) => {
 										<span className='points-text'> Points </span>
 										<span>
 											<img
-												alt="CG Points"
+												alt='CG Points'
 												src='https://image.flaticon.com/icons/svg/715/715709.svg'
 												className='points-img'
 											/>

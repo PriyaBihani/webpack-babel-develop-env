@@ -3,8 +3,9 @@ import 'regenerator-runtime/runtime';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import thunk from 'react-redux';
+import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -14,13 +15,17 @@ import rootReducer from './reducers';
 import './index.css';
 import 'bootstrap/dist/js/bootstrap.js';
 
+const state = window._INITIAL_DATA_;
+
+delete window._INITIAL_DATA_;
+
 const store = createStore(
 	rootReducer,
-	window._INITIAL_DATA_,
-	applyMiddleware(thunk)
+	state,
+	composeWithDevTools(applyMiddleware(thunk))
 );
 
-console.log('working prehydreate');
+console.log('working prehydrate');
 
 ReactDOM.hydrate(
 	<React.StrictMode>
