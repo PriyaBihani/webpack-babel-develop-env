@@ -8,6 +8,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import store from './clientStore';
+
 
 import App from './App';
 import rootReducer from './reducers';
@@ -18,11 +20,11 @@ import 'bootstrap/dist/js/bootstrap.js';
 const middleware = [thunk];
 
 
-const store = createStore(
-	rootReducer,
-	window._INITIAL_DATA_,
-	composeWithDevTools(applyMiddleware(...middleware))
-);
+// const store = createStore(
+// 	rootReducer,
+// 	window._INITIAL_DATA_,
+// 	composeWithDevTools(applyMiddleware(...middleware))
+// );
 
 console.log('working prehydreate');
 

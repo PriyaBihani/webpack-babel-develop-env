@@ -6,7 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 import { loadUser } from './actions/auth';
 import { setAuthToken, isClient } from './helpers/setAuthToken';
 
-import store from './store';
+import store from './clientStore';
 import routes from './Routes';
 import Navbar from './layout/Navbar/Navbar';
 
@@ -16,7 +16,7 @@ if (isClient && localStorage.token) {
 
 const App = () => {
 	useEffect(() => {
-		// store.dispatch(loadUser());
+		store.dispatch(loadUser());
 	}, []);
 	console.log('app, checking working');
 	return (

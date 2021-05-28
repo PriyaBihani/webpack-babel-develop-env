@@ -27,7 +27,7 @@ if (dev) reload(app);
 app.use(async (req, res) => {
 	const store = createStore();
 	const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
-
+	console.log(store.getState())
 	console.log(activeRoute);
 
 	const promise = activeRoute.loadData
