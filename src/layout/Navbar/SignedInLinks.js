@@ -30,7 +30,7 @@ const SignedInLinks = () => {
 				<li className='nav-item pl-4 pl-md-0 ml-0 ml-md-4'>
 					<a
 						onClick={() => {
-							localStorage.clear();
+							isClient && localStorage.clear();
 						}}
 						href='/'
 						type='button'

@@ -1,5 +1,0 @@
-    webpack.client.prod.js
-    
-    webpack stats
-
-    react-helmet

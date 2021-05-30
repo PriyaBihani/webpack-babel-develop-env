@@ -24,11 +24,13 @@ app.use(express.static('build'));
 
 if (dev) reload(app);
 
-app.use((req, res) => {
+app.use(async (req, res) => {
 	const store = createStore();
-	const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
+	console.log(req.url);
+	const activeRoute =
+		routes.find((route) => matchPath(req.url, { ...route, exact: true })) || {};
 
-	console.log(activeRoute);
+	console.log('ad', activeRoute);
 
 	const promise = activeRoute.loadData
 		? activeRoute.loadData(store)
@@ -54,7 +56,7 @@ app.use((req, res) => {
 					'\\u003c'
 				)}`
 			);
-		console.log('working', finalHtml);
+		// console.log('working', finalHtml);
 		res.send(finalHtml);
 		res.end();
 	});

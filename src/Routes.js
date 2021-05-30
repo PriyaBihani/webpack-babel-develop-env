@@ -31,12 +31,11 @@ const routes = [
 	},
 	{
 		path: '/learn/:specialityName',
-		component: Preview,
+		...Preview,
 	},
 	{
 		path: '/blog',
-		component: Blog,
-
+		...Blog,
 	},
 	{
 		path: '/signup',

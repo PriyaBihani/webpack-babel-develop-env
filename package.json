@@ -11,7 +11,7 @@
 		"dev": "yarn build:dev && npm-run-all --parallel dev:*",
 		"dev:build-server": "webpack --config webpack.server.js --watch",
 		"dev:build-client": "webpack --config webpack.client.dev.js --watch",
-		"dev:server": "nodemon --watch build --exec \"node dist/main.js\""
+		"dev:server": "nodemon --watch dist --exec \"node dist/main.js\""
 	},
 	"author": "Priya Bihani",
 	"license": "ISC",
