@@ -8,10 +8,10 @@ const initialState = {};
 const middleware = [thunk];
 
 export default () => {
-	const store = createStore(
-		rootReducer,
-		initialState,
-		composeWithDevTools(applyMiddleware(...middleware))
-	);
-	return store;
+  const store = createStore(
+    rootReducer,
+    initialState,
+    composeWithDevTools(applyMiddleware(...middleware))
+  );
+  return store;
 };

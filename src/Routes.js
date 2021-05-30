@@ -35,7 +35,8 @@ const routes = [
 	},
 	{
 		path: '/blog',
-		...Blog,
+		component: Blog,
+
 	},
 	{
 		path: '/signup',
