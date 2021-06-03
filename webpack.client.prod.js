@@ -24,7 +24,7 @@ const config = {
 		filename: '[name].[contenthash].js',
 		path: path.resolve(__dirname, 'build'),
 	},
-	devtool: 'inline-source-map',
+	devtool: 'source-map',
 	plugins: [
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
