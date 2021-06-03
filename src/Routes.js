@@ -27,7 +27,7 @@ const routes = [
 	},
 	{
 		path: '/blog/read/:name',
-		component: Article,
+		...Article,
 	},
 	{
 		path: '/learn/:specialityName',

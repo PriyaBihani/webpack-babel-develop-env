@@ -12,6 +12,7 @@ import serialize from 'serialize-javascript';
 import App from './src/App';
 import routes from './src/Routes';
 import createStore from './src/store';
+import { ids } from 'webpack';
 
 const PORT = process.env.PORT || 3000;
 
@@ -26,14 +27,22 @@ if (dev) reload(app);
 
 app.use(async (req, res) => {
 	const store = createStore();
-	console.log(req.url);
-	const activeRoute =
-		routes.find((route) => matchPath(req.url, { ...route, exact: true })) || {};
+	let activeRoute
+	routes.map(route => {
+		const match = (matchPath(req.url, { ...route, exact: true, url: req.url }))
+		if (match) {
+			activeRoute = { ...route, params: match.params }
+		}
+	})
+
+	// const activeRoute =
+	// 	routes.find((route) => matchPath(req.url, { ...route, exact: true, url: req.url })) || {};
 
 	console.log('ad', activeRoute);
+	console.log("This is match path", req.url)
 
-	const promise = activeRoute.loadData
-		? activeRoute.loadData(store)
+	const promise = activeRoute?.loadData
+		? activeRoute.loadData(store, activeRoute.params)
 		: Promise.resolve();
 
 	promise.then((data) => {
