@@ -1,18 +1,17 @@
-import express from 'express';
 import React from 'react';
+import express from 'express';
+import { Helmet } from 'react-helmet';
+import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
-import { Provider } from 'react-redux';
 
 import fs from 'fs';
-import axios from 'axios';
 import reload from 'reload';
 import serialize from 'serialize-javascript';
 
 import App from './src/App';
 import routes from './src/Routes';
 import createStore from './src/store';
-import { ids } from 'webpack';
 
 const PORT = process.env.PORT || 3000;
 
@@ -27,19 +26,15 @@ if (dev) reload(app);
 
 app.use(async (req, res) => {
 	const store = createStore();
-	let activeRoute
-	routes.map(route => {
-		const match = (matchPath(req.url, { ...route, exact: true, url: req.url }))
+	let activeRoute;
+	routes.map((route) => {
+		const match = matchPath(req.url, { ...route, exact: true, url: req.url });
 		if (match) {
-			activeRoute = { ...route, params: match.params }
+			activeRoute = { ...route, params: match.params };
 		}
-	})
-
-	// const activeRoute =
-	// 	routes.find((route) => matchPath(req.url, { ...route, exact: true, url: req.url })) || {};
+	});
 
 	console.log('ad', activeRoute);
-	console.log("This is match path", req.url)
 
 	const promise = activeRoute?.loadData
 		? activeRoute.loadData(store, activeRoute.params)
@@ -56,7 +51,14 @@ app.use(async (req, res) => {
 			</React.StrictMode>
 		);
 		const html = renderToString(reactMarkup);
+		const helmet = Helmet.renderStatic();
 		let finalHtml = index
+			.replace(
+				'<!-- Helmet -->',
+				`${helmet.title.toString()}
+                 ${helmet.meta.toString()}
+                 ${helmet.link.toString()}`
+			)
 			.replace('<div id="root"></div>', `<div id="root">${html}</div>`)
 			.replace(
 				'//script',

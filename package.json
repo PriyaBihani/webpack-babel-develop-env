@@ -18,8 +18,9 @@
 	"dependencies": {
 		"axios": "^0.21.1",
 		"bootstrap": "^4.5.0",
+		"buffer": "^6.0.3",
+		"core-js": "^3.13.1",
 		"express": "^4.17.1",
-		"file-loader": "^6.2.0",
 		"framer-motion": "^1.10.3",
 		"highlight.js": "^10.0.3",
 		"jquery": "^3.5.1",
@@ -41,6 +42,7 @@
 		"redux": "^4.0.5",
 		"redux-devtools-extension": "^2.13.8",
 		"redux-thunk": "^2.3.0",
+		"regenerator-runtime": "^0.13.7",
 		"web-vitals": "^0.2.4"
 	},
 	"devDependencies": {
@@ -50,6 +52,7 @@
 		"babel-loader": "^8.2.2",
 		"compression-webpack-plugin": "^8.0.0",
 		"css-loader": "^5.2.5",
+		"html-loader": "^2.1.2",
 		"html-webpack-plugin": "^5.3.1",
 		"nodemon": "^2.0.7",
 		"reload": "^3.1.1",
