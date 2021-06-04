@@ -9,6 +9,13 @@ module.exports = {
 				},
 			},
 			{
+				test: /\.html$/i,
+				loader: 'html-loader',
+				options: {
+					sources: true,
+				},
+			},
+			{
 				test: /\.css$/,
 				exclude: /[\\/]node_modules[\\/]/,
 				use: ['style-loader', 'css-loader'],
@@ -16,11 +23,7 @@ module.exports = {
 			{
 				test: /\.(png|PNG|svg|jpe?g|gif|ico)$/i,
 				exclude: /[\\/]node_modules[\\/]/,
-				use: [
-					{
-						loader: 'file-loader',
-					},
-				],
+				type: 'asset/resource',
 			},
 		],
 	},
