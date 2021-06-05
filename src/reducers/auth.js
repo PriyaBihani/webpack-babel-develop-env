@@ -23,6 +23,7 @@ export default function authReducer(state = initialState, action) {
 
 	switch (type) {
 		case USER_LOADED:
+			console.log("auth payload ye hai", payload)
 			return {
 				...state,
 				user: payload,
