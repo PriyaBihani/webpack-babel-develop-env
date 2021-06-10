@@ -12,7 +12,7 @@
         "dev:build-server": "webpack --config webpack.server.js --watch",
         "dev:build-client": "webpack --config webpack.client.dev.js --watch",
         "dev:server": "nodemon --watch dist --exec \"node dist/main.js\"",
-        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn && yarn run build "
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn && yarn run build &&yarn dev "
     },
     "engines": {
         "node": "12.14.0",

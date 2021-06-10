@@ -4,15 +4,12 @@ import { ToastContainer } from 'react-toastify';
 import { AnimatePresence } from 'framer-motion';
 
 import { loadUser } from './actions/auth';
-import { setAuthToken, isClient } from './helpers/setAuthToken';
+import { setAuthToken } from './helpers/setAuthToken';
 
 import store from './clientStore';
 import routes from './Routes';
 import Navbar from './layout/Navbar/Navbar';
 
-if (isClient && localStorage.token) {
-	setAuthToken(localStorage.token);
-}
 
 const App = () => {
 	useEffect(() => {
