@@ -26,7 +26,7 @@ app.use(express.static('build'));
 
 if (dev) reload(app);
 
-app.use(async (req, res) => {
+app.use(async (req, res, next) => {
 	let activeRoute;
 	const store = createStore();
 	const statsFile = path.resolve('./build/loadable-stats.json');
@@ -74,9 +74,15 @@ app.use(async (req, res) => {
 			)
 			.replace('<!-- loadable -->', extractor.getScriptTags());
 		// console.log('working', finalHtml);
-		res.send(finalHtml);
-		res.end();
+
+		req.response = finalHtml
+		next()
 	});
 });
+
+app.get("*", (req, res) => {
+	res.status(200).send(req.response);
+});
+
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
